@@ -10,6 +10,17 @@ void loopNormal() {
     http.begin("http://api.openweathermap.org/data/2.5/weather?q=toronto&appid=d6c59d818ec8c12f9bf85002f8fc87e4&mode=json");
     //webServer();
     queryWeather();
+    Serial.print("Obtained weather successfully at: ");
+    Serial.print(year());
+    Serial.print("/");
+    Serial.print(month());
+    Serial.print("/");
+    Serial.print(day());
+    Serial.print("@");
+    Serial.print(hour());
+    Serial.print(":");
+    Serial.print(minute());
+    Serial.println(" UTC");
     mqttConnected = MQTT_connect(); 
     http.end();
     currentTick = 0;

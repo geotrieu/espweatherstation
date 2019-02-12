@@ -1,7 +1,7 @@
   /* ESP8266 Web Server
  * By: George Trieu
  * Started On: May 15th, 2018
- * Last Edited On: October 11th, 2018
+ * Last Edited On: February 12th, 2019
  * Purpose: To display the weather on the LCD display,
  *          and forward data to the Raspberry Pi using
  *          MQTT. */
@@ -20,6 +20,9 @@
 //Load BMP280 Libraries
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BMP280.h>
+//Load Time Library
+#include <Time.h>
+#include <TimeLib.h>
 
 //Network Details
 char ssid[20];

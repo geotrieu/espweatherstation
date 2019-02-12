@@ -11,5 +11,6 @@ void queryWeather() {
   main_pressure = root["main"]["pressure"].as<int>();
   main_humidity = root["main"]["humidity"].as<int>();
   wind_speed = (root["wind"]["speed"].as<float>() * 3600) / 1000;
+  setTime(root["dt"].as<long>());
 }
 
