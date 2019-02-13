@@ -30,6 +30,11 @@ char password[30];
 bool normal;
 String macaddress;
 
+//OLED (BETA)
+//Comment out if OLED is disabled
+#define ENABLEOLED
+bool oledSuccess = false;
+
 //MQTT Details
 #define MQTT_SERVER "192.168.1.3"
 #define MQTT_PORT 1883                    
@@ -136,7 +141,7 @@ void setup() {
     WIFI_Connect();
   }
   delay(500);
-  
+
   loadNormal();
 }
 

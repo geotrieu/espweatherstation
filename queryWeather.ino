@@ -11,6 +11,12 @@ void queryWeather() {
   main_pressure = root["main"]["pressure"].as<int>();
   main_humidity = root["main"]["humidity"].as<int>();
   wind_speed = (root["wind"]["speed"].as<float>() * 3600) / 1000;
+  //Set the time for Serial Debugging/Reporting
   setTime(root["dt"].as<long>());
+
+  //OLED Management
+  if (oledSuccess) {
+    drawOLED(weather0_main);
+  }
 }
 

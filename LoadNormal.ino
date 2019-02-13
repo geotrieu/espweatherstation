@@ -38,6 +38,23 @@ void loadNormal() {
   lcd.print("Connected!");
   delay(500);
 
+  #ifdef ENABLEOLED
+    lcd.clear();
+    lcd.home();
+    lcd.print("Init OLED");
+    Serial.println("Initializing OLED");
+    if (oledSuccess = initOLED()) {
+      lcd.setCursor ( 0, 1 );
+      Serial.println("OLED Successfully initialized!");
+      lcd.print("Success!");
+    } else {
+      lcd.setCursor ( 0, 1 );
+      Serial.println("Initializing OLED failed!");
+      lcd.print("Failed");
+    }
+    delay(500);
+  #endif
+
   Serial.println("Weather Station Loaded Successfully!");
   lcd.clear();
   lcd.home();

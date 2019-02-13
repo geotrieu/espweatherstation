@@ -10,7 +10,7 @@ void loopNormal() {
     http.begin("http://api.openweathermap.org/data/2.5/weather?q=toronto&appid=d6c59d818ec8c12f9bf85002f8fc87e4&mode=json");
     //webServer();
     queryWeather();
-    Serial.print("Obtained weather successfully at: ");
+    Serial.print("Successfully obtained weather: ");
     Serial.print(year());
     Serial.print("/");
     Serial.print(month());
