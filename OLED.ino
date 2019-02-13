@@ -24,8 +24,9 @@
     if (weather == "Snow") {
         display.drawBitmap(0, 0, snow, SCREEN_WIDTH, SCREEN_HEIGHT, 1);
     } else if (weather == "Rain") {
-      
         display.drawBitmap(0, 0, rain, SCREEN_WIDTH, SCREEN_HEIGHT, 1);
+    } else if (weather == "Mist") {
+        display.drawBitmap(0, 0, mist, SCREEN_WIDTH, SCREEN_HEIGHT, 1);
     } else {
         display.clearDisplay();
     }
