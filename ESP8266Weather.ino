@@ -115,10 +115,6 @@ void setup() {
   lcd.createChar(0, degree);
   lcd.clear();
 
-  Serial.println(ssid);
-  Serial.println(password);
-  Serial.println(normal);
-
   //CHECK IF IT IS INITIAL SETUP
   if (!normal) {
     macaddress = "ESP-";
