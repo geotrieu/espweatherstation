@@ -19,13 +19,23 @@
     return true;
   }
 
-  void drawOLED(String weather) {
+  void drawOLED(String s) {
     display.clearDisplay();
-    if (weather == "Snow") {
+    if (s == "wifi0") {
+        display.drawBitmap(0, 0, wifi0, SCREEN_WIDTH, SCREEN_HEIGHT, 1);
+    } else if (s == "wifi1") {
+        display.drawBitmap(0, 0, wifi1, SCREEN_WIDTH, SCREEN_HEIGHT, 1);
+    } else if (s == "wifi2") {
+        display.drawBitmap(0, 0, wifi2, SCREEN_WIDTH, SCREEN_HEIGHT, 1);
+    } else if (s == "wifi3") {
+        display.drawBitmap(0, 0, wifi3, SCREEN_WIDTH, SCREEN_HEIGHT, 1);
+    } else if (s == "wificheck") {
+        display.drawBitmap(0, 0, wificheck, SCREEN_WIDTH, SCREEN_HEIGHT, 1);
+    } else if (s == "Snow") {
         display.drawBitmap(0, 0, snow, SCREEN_WIDTH, SCREEN_HEIGHT, 1);
-    } else if (weather == "Rain") {
+    } else if (s == "Rain") {
         display.drawBitmap(0, 0, rain, SCREEN_WIDTH, SCREEN_HEIGHT, 1);
-    } else if (weather == "Mist") {
+    } else if (s == "Mist") {
         display.drawBitmap(0, 0, mist, SCREEN_WIDTH, SCREEN_HEIGHT, 1);
     } else {
         display.clearDisplay();

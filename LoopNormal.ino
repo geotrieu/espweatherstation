@@ -10,21 +10,28 @@ void loopNormal() {
     http.begin("http://api.openweathermap.org/data/2.5/weather?q=toronto&appid=d6c59d818ec8c12f9bf85002f8fc87e4&mode=json");
     //webServer();
     queryWeather();
-    Serial.print("Successfully obtained weather: ");
-    Serial.print(year());
-    Serial.print("/");
-    Serial.print(month());
-    Serial.print("/");
-    Serial.print(day());
-    Serial.print("@");
-    Serial.print(hour());
-    Serial.print(":");
-    Serial.print(minute());
-    Serial.println(" UTC");
-    mqttConnected = MQTT_connect(); 
+    debugmsg += "Successfully obtained weather: ";
+    debugmsg += year();
+    debugmsg += "/";
+    debugmsg += month();
+    debugmsg += "/";
+    debugmsg += day();
+    debugmsg += "/";
+    debugmsg += " @ ";
+    debugmsg += hour();
+    debugmsg += ":";
+    debugmsg += minute();
+    debugmsg += " UTC";
+    Serial.println(debugmsg);
+    mqttConnected = MQTT_connect();
+    if (mqttConnected) {
+      char debugChar[debugmsg.length() + 1];
+      debugmsg.toCharArray(debugChar, debugmsg.length() + 1);
+      debug_esp.publish(debugChar);
+    }
     http.end();
     currentTick = 0;
-
+    
     //Update Outside Temperature
     Adafruit_MQTT_Subscribe *subscription;
     bool tempReceived;

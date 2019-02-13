@@ -1,7 +1,7 @@
   /* ESP8266 Web Server
  * By: George Trieu
  * Started On: May 15th, 2018
- * Last Edited On: February 12th, 2019
+ * Last Edited On: February 13th, 2019
  * Purpose: To display the weather on the LCD display,
  *          and forward data to the Raspberry Pi using
  *          MQTT. */
@@ -60,6 +60,7 @@ HTTPClient http;
 WiFiClient client; 
 Adafruit_MQTT_Client mqtt(&client, MQTT_SERVER, MQTT_PORT, MQTT_USERNAME, MQTT_PASSWORD); 
 Adafruit_MQTT_Publish weather_esp = Adafruit_MQTT_Publish(&mqtt, MQTT_USERNAME "/weather/roomesp");
+Adafruit_MQTT_Publish debug_esp = Adafruit_MQTT_Publish(&mqtt, MQTT_USERNAME "/weather/debug");
 Adafruit_MQTT_Subscribe weather_out = Adafruit_MQTT_Subscribe(&mqtt, MQTT_USERNAME "/weather/outesp");
 
 LiquidCrystal_I2C lcd(0x3F, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
@@ -75,6 +76,7 @@ byte degree[8] = {
   B00000,
 };
 
+String debugmsg;
 String weather0_main;
 bool mqttConnected;
 float main_temp;
@@ -131,12 +133,7 @@ void setup() {
     WiFi.softAP(chrmac, "d6adcx2s");
     server.begin();
     return;
-  } else {
-    //Boot into EEPROM saved credentials
-    WiFi.mode(WIFI_STA);
-    WIFI_Connect();
   }
-  delay(500);
 
   loadNormal();
 }

@@ -13,11 +13,22 @@ void WIFI_Connect()
   Serial.print("Connecting to ");
   Serial.println(ssid);
 
+  if (oledSuccess) {
+    drawOLED("wifi0");
+  }
+
   //Connect
   WiFi.begin(ssid, password);
+  int oledProgress = 1;
+  String oledWIFI;
   while(WiFi.status() != WL_CONNECTED) {
     delay(250);
     Serial.print( "." );
+    if (oledSuccess) {
+      oledWIFI = "wifi";
+      oledWIFI += ((oledProgress++)%4);
+      drawOLED(oledWIFI);
+    }
     delay(250);
   }
   
@@ -26,6 +37,12 @@ void WIFI_Connect()
   lcd.setCursor ( 0, 1 );
   lcd.print("Connected!");
 
+  //OLED Connected Messages
+  #ifdef ENABLEOLED
+      drawOLED("wificheck");
+  #endif
+
   //Serial Connected Messages
   Serial.println("Connected!");
+  delay(500);
 }
