@@ -77,9 +77,9 @@ void loopNormal() {
     char final3Char[finalStr.length() + 1];
     finalStr.toCharArray(final3Char, finalStr.length() + 1);
     if (mqttConnected) {
-      weather_esp.publish(finalChar);
-      weather_esp.publish(final2Char);
-      weather_esp.publish(final3Char);
+      debug_esp.publish(finalChar);
+      debug_esp.publish(final2Char);
+      debug_esp.publish(final3Char);
     }
     displayTick++;
   //Print Real Temperatures
@@ -105,6 +105,15 @@ void loopNormal() {
     char finalChar[finalStr.length() + 1];
     finalStr.toCharArray(finalChar, finalStr.length() + 1);
     if (mqttConnected) {
+      //For debug
+      debug_esp.publish(finalChar);
+    }
+    weStr = "RT ";
+    finalStr = weStr + roomTemp;
+    finalChar[finalStr.length() + 1];
+    finalStr.toCharArray(finalChar, finalStr.length() + 1);
+    if (mqttConnected) {
+      //For log
       weather_esp.publish(finalChar);
     }
     displayTick++;
